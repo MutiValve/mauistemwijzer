@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
+             x:Class="mauistemwijzer.Views.PoliticalGraph"
+             Title="PoliticalGraph"
+             BackgroundColor="#0A0A0A"
+             Shell.NavBarIsVisible="False">
+
+    <Grid RowDefinitions="Auto,Auto,*,Auto,Auto" Padding="0,48,0,32">
+
+        <!-- ── Title ──────────────────────────────────────────────────── -->
+        <Label Grid.Row="0"
+               Text="Politieke Roos"
+               TextColor="#F5A623"
+               FontSize="22"
+               FontAttributes="Bold"
+               HorizontalOptions="Center"
+               Margin="0,0,0,4" />
+
+        <!-- ── User position text ─────────────────────────────────────── -->
+        <Label Grid.Row="1"
+               Text="{Binding UserPositionText}"
+               TextColor="#AAAAAA"
+               FontSize="13"
+               HorizontalOptions="Center"
+               Margin="0,0,0,8" />
+
+        <!-- ── Chart area with axis labels overlaid ───────────────────── -->
+        <Grid Grid.Row="2" Margin="8,0">
+
+            <!-- LiveCharts2 CartesianChart -->
+            <lvc:CartesianChart
+                x:Name="CompassChart"
+                Series="{Binding Series}"
+                XAxes="{Binding XAxes}"
+                YAxes="{Binding YAxes}"
+                Sections="{Binding Sections}"
+                TooltipPosition="Hidden"
+                LegendPosition="Hidden"
+                DrawMarginFrame="{x:Null}"
+                Background="Transparent" />
+
+            <!-- Axis labels overlay (positioned relative to chart edges) -->
+
+            <!-- Top: Progressief -->
+            <Label Text="Progressief"
+                   TextColor="White"
+                   FontSize="13"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Start"
+                   Margin="0,6,0,0"
+                   InputTransparent="True" />
+
+            <!-- Bottom: Conservatief -->
+            <Label Text="Conservatief"
+                   TextColor="White"
+                   FontSize="13"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   VerticalOptions="End"
+                   Margin="0,0,0,6"
+                   InputTransparent="True" />
+
+            <!-- Left: Links -->
+            <Label Text="Links"
+                   TextColor="White"
+                   FontSize="13"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Start"
+                   VerticalOptions="Center"
+                   Margin="6,0,0,0"
+                   InputTransparent="True" />
+
+            <!-- Right: Rechts -->
+            <Label Text="Rechts"
+                   TextColor="White"
+                   FontSize="13"
+                   FontAttributes="Bold"
+                   HorizontalOptions="End"
+                   VerticalOptions="Center"
+                   Margin="0,0,6,0"
+                   InputTransparent="True" />
+
+        </Grid>
+
+        <!-- ── User position label ────────────────────────────────────── -->
+        <Label Grid.Row="3"
+               TextColor="#888888"
+               FontSize="11"
+               HorizontalOptions="Center"
+               Margin="0,4,0,0"
+               Text="Partijposities zijn gebaseerd op hun standpunten." />
+
+        <!-- ── Ga verder button ────────────────────────────────────────── -->
+        <Button Grid.Row="4"
+                Text="Ga verder"
+                Command="{Binding GoForwardCommand}"
+                BackgroundColor="#F5A623"
+                TextColor="#0A0A0A"
+                FontAttributes="Bold"
+                FontSize="18"
+                CornerRadius="28"
+                HeightRequest="56"
+                HorizontalOptions="Fill"
+                Margin="32,16,32,0" />
+
+    </Grid>
+</ContentPage>

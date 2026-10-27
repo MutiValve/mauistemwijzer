@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:mauistemwijzer.ViewModels"
+    xmlns:converters="clr-namespace:mauistemwijzer.Converters"
+    x:Class="mauistemwijzer.Views.PartySelectPage"
+    x:DataType="vm:PartySelectViewModel"
+    BackgroundColor="#0A0A0A"
+    Shell.NavBarIsVisible="False">
+
+    <ContentPage.Resources>
+        <converters:StringToColorConverter x:Key="StringToColor" />
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="Auto,*,Auto">
+
+        <!-- Header -->
+        <VerticalStackLayout Grid.Row="0" Padding="24,48,24,16" Spacing="16">
+            <Label
+                Text="Welke partij wil je meenemen?"
+                TextColor="#F5A623"
+                FontSize="22"
+                FontAttributes="Bold" />
+
+            <!-- Alle partijen toggle -->
+            <HorizontalStackLayout Spacing="10">
+                <CheckBox
+                    IsChecked="{Binding AllPartiesSelected}"
+                    Color="#F5A623"
+                    VerticalOptions="Center" />
+                <Label
+                    Text="Alle partijen"
+                    TextColor="White"
+                    FontSize="15"
+                    VerticalOptions="Center" />
+            </HorizontalStackLayout>
+
+            <BoxView HeightRequest="1" BackgroundColor="#2A2A2A" />
+        </VerticalStackLayout>
+
+        <!-- Partijen grid -->
+        <CollectionView
+            Grid.Row="1"
+            ItemsSource="{Binding Parties}"
+            Margin="16,0">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout
+                    Orientation="Vertical"
+                    Span="2"
+                    HorizontalItemSpacing="10"
+                    VerticalItemSpacing="10" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="vm:SelectableParty">
+                    <Border
+                        BackgroundColor="#171717"
+                        StrokeShape="RoundRectangle 14"
+                        Stroke="#2A2A2A"
+                        StrokeThickness="1"
+                        Padding="12,10">
+                        <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="10">
+
+                            <!-- Partijkleur label -->
+                            <Border
+                                Grid.Column="0"
+                                WidthRequest="42"
+                                HeightRequest="42"
+                                BackgroundColor="{Binding Party.Color, Converter={StaticResource StringToColor}}"
+                                StrokeShape="RoundRectangle 10"
+                                Stroke="Transparent"
+                                VerticalOptions="Center">
+                                <Label
+                                    Text="{Binding Party.Abbreviation}"
+                                    TextColor="White"
+                                    FontSize="9"
+                                    FontAttributes="Bold"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center"
+                                    HorizontalTextAlignment="Center" />
+                            </Border>
+
+                            <!-- Naam -->
+                            <Label
+                                Grid.Column="1"
+                                Text="{Binding Party.Abbreviation}"
+                                TextColor="White"
+                                FontSize="13"
+                                FontAttributes="Bold"
+                                VerticalOptions="Center" />
+
+                            <!-- Checkbox -->
+                            <CheckBox
+                                Grid.Column="2"
+                                IsChecked="{Binding IsSelected}"
+                                Color="#F5A623"
+                                VerticalOptions="Center"
+                                HorizontalOptions="End" />
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Ga verder knop -->
+        <Button
+            Grid.Row="2"
+            Text="Ga verder"
+            Command="{Binding ContinueCommand}"
+            BackgroundColor="#F5A623"
+            TextColor="#0A0A0A"
+            FontAttributes="Bold"
+            FontSize="16"
+            CornerRadius="30"
+            HeightRequest="54"
+            Margin="24,16,24,32" />
+
+    </Grid>
+</ContentPage>
