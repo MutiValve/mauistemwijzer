@@ -1,4 +1,5 @@
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.DependencyInjection; 
 using mauistemwijzer.Services;
 using mauistemwijzer.ViewModels;
 using mauistemwijzer.Views;
@@ -23,7 +24,12 @@ public static class MauiProgram
             });
 
         // ── Services ──────────────────────────────────────────
-        builder.Services.AddSingleton<IStemwijzerService, MockStemwijzerService>();
+        builder.Services.AddHttpClient<IStemwijzerService, HttpStemwijzerService>(client =>
+        {
+            // Replace with your PHP backend URL (e.g., "https://your-api-domain.com/api/")
+            // For Android Emulator local testing, use "http://10.0.2.2/your-project/api/"
+            client.BaseAddress = new Uri("https://your-api-url-here.com/api/");
+        });
         builder.Services.AddSingleton<StemwijzerState>();
 
         // ── ViewModels ────────────────────────────────────────
