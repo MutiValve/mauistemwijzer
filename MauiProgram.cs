@@ -28,7 +28,7 @@ public static class MauiProgram
         {
             // Replace with your PHP backend URL (e.g., "https://your-api-domain.com/api/")
             // For Android Emulator local testing, use "http://10.0.2.2/your-project/api/"
-            client.BaseAddress = new Uri("https://your-api-url-here.com/api/");
+            client.BaseAddress = new Uri("http://localhost/programming/stemwijzer/backend/");
         });
         builder.Services.AddSingleton<StemwijzerState>();
 

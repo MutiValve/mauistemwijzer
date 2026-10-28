@@ -24,19 +24,24 @@ public partial class QuestionViewModel : ObservableObject
     [ObservableProperty]
     private AnswerType? selectedAnswer;
 
-    public QuestionViewModel(StemwijzerState state)
+    private IStemwijzerService _httpService;
+
+    public QuestionViewModel(StemwijzerState state, IStemwijzerService httpService)
     {
         _state = state;
+        _httpService = httpService;
         TotalQuestions = _state.Questions.Count;
         LoadCurrentQuestion();
     }
 
-    private void LoadCurrentQuestion()
+    private async Task LoadCurrentQuestion()
     {
         if (_state.Questions.Count == 0) return;
 
         var idx = _state.CurrentQuestionIndex;
-        CurrentQuestion = _state.Questions[idx];
+
+        // get the question from the httpsservice using the question ID stored in the state
+        CurrentQuestion = await _httpService.GetQuestionByIdAsync(_state.Questions[idx]);
         QuestionNumberText = $"Vraag {idx + 1}/{TotalQuestions}";
         ProgressValue = (idx + 1.0) / TotalQuestions;
 

@@ -4,6 +4,9 @@ namespace mauistemwijzer.Services;
 
 public interface IStemwijzerService
 {
-    Task<List<Question>> GetQuestionsAsync();
+    Task<List<int>> GetQuestionsAsync();
+
+    Task<Question?> GetQuestionByIdAsync(int id);
     Task<List<Party>> GetPartiesAsync();
+    Task RefreshAsync();
 }

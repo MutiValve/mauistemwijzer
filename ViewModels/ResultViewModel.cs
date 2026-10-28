@@ -59,19 +59,19 @@ public partial class ResultViewModel : ObservableObject
 
             foreach (var answer in answeredQuestions)
             {
-                var question = _state.Questions.FirstOrDefault(q => q.Id == answer.QuestionId);
-                if (question is null) continue;
-                if (!question.PartyPositions.TryGetValue(party.Id, out var partyPos)) continue;
-                if (partyPos == PartyPosition.Neutraal) continue;
+                ////var question = _state.Questions.FirstOrDefault(q => q.Id == answer.QuestionId);
+                //if (question is null) continue;
+                //if (!question.PartyPositions.TryGetValue(party.Id, out var partyPos)) continue;
+                //if (partyPos == PartyPosition.Neutraal) continue;
 
                 comparisons++;
 
-                bool isMatch =
-                    (answer.Answer == AnswerType.Eens   && partyPos == PartyPosition.Eens)   ||
-                    (answer.Answer == AnswerType.Oneens && partyPos == PartyPosition.Oneens)  ||
-                    (answer.Answer == AnswerType.GeenVanBeide); // neutraal telt als half-match
+                //bool isMatch =
+                //    (answer.Answer == AnswerType.Eens   && partyPos == PartyPosition.Eens)   ||
+                //    (answer.Answer == AnswerType.Oneens && partyPos == PartyPosition.Oneens)  ||
+                //    (answer.Answer == AnswerType.GeenVanBeide); // neutraal telt als half-match
 
-                if (isMatch) matches++;
+                //if (isMatch) matches++;
             }
 
             double score = comparisons > 0 ? Math.Round(matches * 100.0 / comparisons) : 0;

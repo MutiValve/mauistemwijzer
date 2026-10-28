@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace mauistemwijzer.Models;
 
 public enum PartyPosition
@@ -9,20 +11,21 @@ public enum PartyPosition
 
 public class Question
 {
+    [JsonPropertyName("idVragen")]
     public int Id { get; set; }
+
+    [JsonPropertyName("Onderwerp")]
     public string Category { get; set; } = string.Empty;
+
+    [JsonPropertyName("Beschrijving")]
     public string Statement { get; set; } = string.Empty;
-    public Dictionary<string, PartyPosition> PartyPositions { get; set; } = [];
 
-    /// <summary>
-    /// How much an "Eens" answer pushes along the economic (X) axis.
-    /// Positive = Rechts, negative = Links. Range [-1, 1].
-    /// </summary>
-    public double EconomicWeight { get; set; } = 0;
+    [JsonPropertyName("Conservatief/Midden/Progressief")]
+    public string Spectrum { get; set; } = string.Empty;
 
-    /// <summary>
-    /// How much an "Eens" answer pushes along the social (Y) axis.
-    /// Positive = Progressief, negative = Conservatief. Range [-1, 1].
-    /// </summary>
-    public double SocialWeight { get; set; } = 0;
+    [JsonPropertyName("Links/Rechts")]
+    public string LinksRechts { get; set; } = string.Empty;
+
+    [JsonPropertyName("weight")]
+    public float Weight { get; set; } = 0;
 }

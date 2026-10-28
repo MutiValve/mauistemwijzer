@@ -141,33 +141,33 @@ public partial class PoliticalGraphViewModel : ObservableObject
     /// The accumulated scores are normalised to [-1, 1].
     private (double x, double y) ComputeUserPosition()
     {
-        double rawX = 0, rawY = 0;
-        double totalEcon = 0, totalSocial = 0;
+        //double rawX = 0, rawY = 0;
+        //double totalEcon = 0, totalSocial = 0;
 
-        foreach (var answer in _state.Answers)
-        {
-            if (answer.Answer == AnswerType.Overgeslagen) continue;
+        //foreach (var answer in _state.Answers)
+        //{
+        //    if (answer.Answer == AnswerType.Overgeslagen) continue;
 
-            var question = _state.Questions.FirstOrDefault(q => q.Id == answer.QuestionId);
-            if (question is null) continue;
+        //    var question = _state.Questions.FirstOrDefault(q => q.Id == answer.QuestionId);
+        //    if (question is null) continue;
 
-            double multiplier = answer.Answer switch
-            {
-                AnswerType.Eens        =>  1.0,
-                AnswerType.Oneens      => -1.0,
-                AnswerType.GeenVanBeide => 0.0,
-                _                      =>  0.0,
-            };
+        //    double multiplier = answer.Answer switch
+        //    {
+        //        AnswerType.Eens        =>  1.0,
+        //        AnswerType.Oneens      => -1.0,
+        //        AnswerType.GeenVanBeide => 0.0,
+        //        _                      =>  0.0,
+        //    };
 
-            rawX    += multiplier * question.EconomicWeight;
-            rawY    += multiplier * question.SocialWeight;
-            totalEcon   += Math.Abs(question.EconomicWeight);
-            totalSocial += Math.Abs(question.SocialWeight);
-        }
+        //    rawX    += multiplier * question.EconomicWeight;
+        //    rawY    += multiplier * question.SocialWeight;
+        //    totalEcon   += Math.Abs(question.EconomicWeight);
+        //    totalSocial += Math.Abs(question.SocialWeight);
+        //}
 
-        double x = totalEcon   > 0 ? Math.Clamp(rawX   / totalEcon,   -1, 1) : 0;
-        double y = totalSocial > 0 ? Math.Clamp(rawY   / totalSocial, -1, 1) : 0;
-        return (x, y);
+        //double x = totalEcon   > 0 ? Math.Clamp(rawX   / totalEcon,   -1, 1) : 0;
+        //double y = totalSocial > 0 ? Math.Clamp(rawY   / totalSocial, -1, 1) : 0;
+        return (0,0);
     }
 
     // Navigation
