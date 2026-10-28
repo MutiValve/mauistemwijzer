@@ -36548,11 +36548,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mauds\\source\\repos\\mauistemwijzer\\mauistemwijzer.csproj",
+      "projectUniqueName": "C:\\programming\\mauistemwijzer\\mauistemwijzer.csproj",
       "projectName": "mauistemwijzer",
-      "projectPath": "C:\\Users\\mauds\\source\\repos\\mauistemwijzer\\mauistemwijzer.csproj",
+      "projectPath": "C:\\programming\\mauistemwijzer\\mauistemwijzer.csproj",
       "packagesPath": "C:\\Users\\mauds\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\mauds\\source\\repos\\mauistemwijzer\\obj\\",
+      "outputPath": "C:\\programming\\mauistemwijzer\\obj\\",
       "projectStyle": "PackageReference",
       "crossTargeting": true,
       "fallbackFolders": [

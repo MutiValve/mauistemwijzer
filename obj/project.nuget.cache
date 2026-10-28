@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "nRs1GfahQxk=",
+  "dgSpecHash": "3qghsalQhAM=",
   "success": true,
-  "projectFilePath": "C:\\Users\\mauds\\source\\repos\\mauistemwijzer\\mauistemwijzer.csproj",
+  "projectFilePath": "C:\\programming\\mauistemwijzer\\mauistemwijzer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mauds\\.nuget\\packages\\communitytoolkit.mvvm\\8.4.2\\communitytoolkit.mvvm.8.4.2.nupkg.sha512",
     "C:\\Users\\mauds\\.nuget\\packages\\googlegson\\2.13.1.1\\googlegson.2.13.1.1.nupkg.sha512",

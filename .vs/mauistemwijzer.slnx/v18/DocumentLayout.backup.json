@@ -3,6 +3,22 @@
   "WorkspaceRootPath": "C:\\Users\\mauds\\source\\repos\\mauistemwijzer\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{CF5191A8-D325-91D1-444B-13A1614DBA0A}|mauistemwijzer.csproj|c:\\users\\mauds\\source\\repos\\mauistemwijzer\\viewmodels\\politicalgraphviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CF5191A8-D325-91D1-444B-13A1614DBA0A}|mauistemwijzer.csproj|solutionrelative:viewmodels\\politicalgraphviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CF5191A8-D325-91D1-444B-13A1614DBA0A}|mauistemwijzer.csproj|c:\\users\\mauds\\source\\repos\\mauistemwijzer\\views\\politicalgraph.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{CF5191A8-D325-91D1-444B-13A1614DBA0A}|mauistemwijzer.csproj|solutionrelative:views\\politicalgraph.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CF5191A8-D325-91D1-444B-13A1614DBA0A}|mauistemwijzer.csproj|c:\\users\\mauds\\source\\repos\\mauistemwijzer\\views\\partyselectpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{CF5191A8-D325-91D1-444B-13A1614DBA0A}|mauistemwijzer.csproj|solutionrelative:views\\partyselectpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CF5191A8-D325-91D1-444B-13A1614DBA0A}|mauistemwijzer.csproj|c:\\users\\mauds\\source\\repos\\mauistemwijzer\\services\\mockstemwijzerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CF5191A8-D325-91D1-444B-13A1614DBA0A}|mauistemwijzer.csproj|solutionrelative:services\\mockstemwijzerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{CF5191A8-D325-91D1-444B-13A1614DBA0A}|mauistemwijzer.csproj|c:\\users\\mauds\\source\\repos\\mauistemwijzer\\appshell.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{CF5191A8-D325-91D1-444B-13A1614DBA0A}|mauistemwijzer.csproj|solutionrelative:appshell.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
@@ -23,24 +39,12 @@
       "RelativeMoniker": "D:0:0:{CF5191A8-D325-91D1-444B-13A1614DBA0A}|mauistemwijzer.csproj|solutionrelative:views\\partyselectpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CF5191A8-D325-91D1-444B-13A1614DBA0A}|mauistemwijzer.csproj|c:\\users\\mauds\\source\\repos\\mauistemwijzer\\views\\partyselectpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{CF5191A8-D325-91D1-444B-13A1614DBA0A}|mauistemwijzer.csproj|solutionrelative:views\\partyselectpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CF5191A8-D325-91D1-444B-13A1614DBA0A}|mauistemwijzer.csproj|c:\\users\\mauds\\source\\repos\\mauistemwijzer\\viewmodels\\politicalgraphviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CF5191A8-D325-91D1-444B-13A1614DBA0A}|mauistemwijzer.csproj|solutionrelative:viewmodels\\politicalgraphviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{CF5191A8-D325-91D1-444B-13A1614DBA0A}|mauistemwijzer.csproj|c:\\users\\mauds\\source\\repos\\mauistemwijzer\\viewmodels\\partyselectviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CF5191A8-D325-91D1-444B-13A1614DBA0A}|mauistemwijzer.csproj|solutionrelative:viewmodels\\partyselectviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CF5191A8-D325-91D1-444B-13A1614DBA0A}|mauistemwijzer.csproj|c:\\users\\mauds\\source\\repos\\mauistemwijzer\\services\\stemwijzerstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CF5191A8-D325-91D1-444B-13A1614DBA0A}|mauistemwijzer.csproj|solutionrelative:services\\stemwijzerstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CF5191A8-D325-91D1-444B-13A1614DBA0A}|mauistemwijzer.csproj|c:\\users\\mauds\\source\\repos\\mauistemwijzer\\services\\mockstemwijzerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CF5191A8-D325-91D1-444B-13A1614DBA0A}|mauistemwijzer.csproj|solutionrelative:services\\mockstemwijzerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CF5191A8-D325-91D1-444B-13A1614DBA0A}|mauistemwijzer.csproj|c:\\users\\mauds\\source\\repos\\mauistemwijzer\\services\\istemwijzerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -61,10 +65,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{CF5191A8-D325-91D1-444B-13A1614DBA0A}|mauistemwijzer.csproj|c:\\users\\mauds\\source\\repos\\mauistemwijzer\\views\\politicalgraph.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CF5191A8-D325-91D1-444B-13A1614DBA0A}|mauistemwijzer.csproj|solutionrelative:views\\politicalgraph.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CF5191A8-D325-91D1-444B-13A1614DBA0A}|mauistemwijzer.csproj|c:\\users\\mauds\\source\\repos\\mauistemwijzer\\views\\politicalgraph.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{CF5191A8-D325-91D1-444B-13A1614DBA0A}|mauistemwijzer.csproj|solutionrelative:views\\politicalgraph.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CF5191A8-D325-91D1-444B-13A1614DBA0A}|mauistemwijzer.csproj|c:\\users\\mauds\\source\\repos\\mauistemwijzer\\views\\startpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
@@ -105,63 +105,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "AppShell.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\mauds\\source\\repos\\mauistemwijzer\\AppShell.xaml.cs",
-              "RelativeDocumentMoniker": "AppShell.xaml.cs",
-              "ToolTip": "C:\\Users\\mauds\\source\\repos\\mauistemwijzer\\AppShell.xaml.cs",
-              "RelativeToolTip": "AppShell.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-27T10:35:28.397Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "PartySelectPage.xaml",
-              "DocumentMoniker": "C:\\Users\\mauds\\source\\repos\\mauistemwijzer\\Views\\PartySelectPage.xaml",
-              "RelativeDocumentMoniker": "Views\\PartySelectPage.xaml",
-              "ToolTip": "C:\\Users\\mauds\\source\\repos\\mauistemwijzer\\Views\\PartySelectPage.xaml",
-              "RelativeToolTip": "Views\\PartySelectPage.xaml",
-              "ViewState": "AgIAAHcAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-10-13T10:29:51.044Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "PartySelectPage.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\mauds\\source\\repos\\mauistemwijzer\\Views\\PartySelectPage.xaml.cs",
-              "RelativeDocumentMoniker": "Views\\PartySelectPage.xaml.cs",
-              "ToolTip": "C:\\Users\\mauds\\source\\repos\\mauistemwijzer\\Views\\PartySelectPage.xaml.cs",
-              "RelativeToolTip": "Views\\PartySelectPage.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-15T11:33:32.899Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "App.xaml",
-              "DocumentMoniker": "C:\\Users\\mauds\\source\\repos\\mauistemwijzer\\App.xaml",
-              "RelativeDocumentMoniker": "App.xaml",
-              "ToolTip": "C:\\Users\\mauds\\source\\repos\\mauistemwijzer\\App.xaml",
-              "RelativeToolTip": "App.xaml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-10-13T09:11:43.055Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "App.xaml.cs",
               "DocumentMoniker": "C:\\Users\\mauds\\source\\repos\\mauistemwijzer\\App.xaml.cs",
               "RelativeDocumentMoniker": "App.xaml.cs",
@@ -174,7 +122,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "AppShell.xaml",
               "DocumentMoniker": "C:\\Users\\mauds\\source\\repos\\mauistemwijzer\\AppShell.xaml",
               "RelativeDocumentMoniker": "AppShell.xaml",
@@ -187,46 +135,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 0,
               "Title": "PoliticalGraphViewModel.cs",
               "DocumentMoniker": "C:\\Users\\mauds\\source\\repos\\mauistemwijzer\\ViewModels\\PoliticalGraphViewModel.cs",
               "RelativeDocumentMoniker": "ViewModels\\PoliticalGraphViewModel.cs",
-              "ToolTip": "C:\\Users\\mauds\\source\\repos\\mauistemwijzer\\ViewModels\\PoliticalGraphViewModel.cs*",
-              "RelativeToolTip": "ViewModels\\PoliticalGraphViewModel.cs*",
-              "ViewState": "AgIAAIwAAAAAAAAAAAAqwBIAAAAyAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\mauds\\source\\repos\\mauistemwijzer\\ViewModels\\PoliticalGraphViewModel.cs",
+              "RelativeToolTip": "ViewModels\\PoliticalGraphViewModel.cs",
+              "ViewState": "AgIAADEAAAAAAAAAAAAqwEEAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-10-27T10:27:20.274Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "PartySelectViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\mauds\\source\\repos\\mauistemwijzer\\ViewModels\\PartySelectViewModel.cs",
-              "RelativeDocumentMoniker": "ViewModels\\PartySelectViewModel.cs",
-              "ToolTip": "C:\\Users\\mauds\\source\\repos\\mauistemwijzer\\ViewModels\\PartySelectViewModel.cs*",
-              "RelativeToolTip": "ViewModels\\PartySelectViewModel.cs*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-27T10:31:13.24Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "StemwijzerState.cs",
-              "DocumentMoniker": "C:\\Users\\mauds\\source\\repos\\mauistemwijzer\\Services\\StemwijzerState.cs",
-              "RelativeDocumentMoniker": "Services\\StemwijzerState.cs",
-              "ToolTip": "C:\\Users\\mauds\\source\\repos\\mauistemwijzer\\Services\\StemwijzerState.cs*",
-              "RelativeToolTip": "Services\\StemwijzerState.cs*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-27T10:34:08.23Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 3,
               "Title": "MockStemwijzerService.cs",
               "DocumentMoniker": "C:\\Users\\mauds\\source\\repos\\mauistemwijzer\\Services\\MockStemwijzerService.cs",
               "RelativeDocumentMoniker": "Services\\MockStemwijzerService.cs",
@@ -239,7 +161,98 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PartySelectPage.xaml",
+              "DocumentMoniker": "C:\\Users\\mauds\\source\\repos\\mauistemwijzer\\Views\\PartySelectPage.xaml",
+              "RelativeDocumentMoniker": "Views\\PartySelectPage.xaml",
+              "ToolTip": "C:\\Users\\mauds\\source\\repos\\mauistemwijzer\\Views\\PartySelectPage.xaml",
+              "RelativeToolTip": "Views\\PartySelectPage.xaml",
+              "ViewState": "AgIAAHcAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-10-13T10:29:51.044Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PoliticalGraph.xaml",
+              "DocumentMoniker": "C:\\Users\\mauds\\source\\repos\\mauistemwijzer\\Views\\PoliticalGraph.xaml",
+              "RelativeDocumentMoniker": "Views\\PoliticalGraph.xaml",
+              "ToolTip": "C:\\Users\\mauds\\source\\repos\\mauistemwijzer\\Views\\PoliticalGraph.xaml*",
+              "RelativeToolTip": "Views\\PoliticalGraph.xaml*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACUAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-10-14T07:56:05.631Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "App.xaml",
+              "DocumentMoniker": "C:\\Users\\mauds\\source\\repos\\mauistemwijzer\\App.xaml",
+              "RelativeDocumentMoniker": "App.xaml",
+              "ToolTip": "C:\\Users\\mauds\\source\\repos\\mauistemwijzer\\App.xaml",
+              "RelativeToolTip": "App.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-10-13T09:11:43.055Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "PartySelectPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\mauds\\source\\repos\\mauistemwijzer\\Views\\PartySelectPage.xaml.cs",
+              "RelativeDocumentMoniker": "Views\\PartySelectPage.xaml.cs",
+              "ToolTip": "C:\\Users\\mauds\\source\\repos\\mauistemwijzer\\Views\\PartySelectPage.xaml.cs",
+              "RelativeToolTip": "Views\\PartySelectPage.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-15T11:33:32.899Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AppShell.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\mauds\\source\\repos\\mauistemwijzer\\AppShell.xaml.cs",
+              "RelativeDocumentMoniker": "AppShell.xaml.cs",
+              "ToolTip": "C:\\Users\\mauds\\source\\repos\\mauistemwijzer\\AppShell.xaml.cs",
+              "RelativeToolTip": "AppShell.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-27T10:35:28.397Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "PartySelectViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\mauds\\source\\repos\\mauistemwijzer\\ViewModels\\PartySelectViewModel.cs",
+              "RelativeDocumentMoniker": "ViewModels\\PartySelectViewModel.cs",
+              "ToolTip": "C:\\Users\\mauds\\source\\repos\\mauistemwijzer\\ViewModels\\PartySelectViewModel.cs",
+              "RelativeToolTip": "ViewModels\\PartySelectViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-27T10:31:13.24Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 10,
+              "Title": "StemwijzerState.cs",
+              "DocumentMoniker": "C:\\Users\\mauds\\source\\repos\\mauistemwijzer\\Services\\StemwijzerState.cs",
+              "RelativeDocumentMoniker": "Services\\StemwijzerState.cs",
+              "ToolTip": "C:\\Users\\mauds\\source\\repos\\mauistemwijzer\\Services\\StemwijzerState.cs",
+              "RelativeToolTip": "Services\\StemwijzerState.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-27T10:34:08.23Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
               "Title": "IStemwijzerService.cs",
               "DocumentMoniker": "C:\\Users\\mauds\\source\\repos\\mauistemwijzer\\Services\\IStemwijzerService.cs",
               "RelativeDocumentMoniker": "Services\\IStemwijzerService.cs",
@@ -252,7 +265,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "StartViewModel.cs",
               "DocumentMoniker": "C:\\Users\\mauds\\source\\repos\\mauistemwijzer\\ViewModels\\StartViewModel.cs",
               "RelativeDocumentMoniker": "ViewModels\\StartViewModel.cs",
@@ -265,12 +278,12 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "ResultViewModel.cs",
               "DocumentMoniker": "C:\\Users\\mauds\\source\\repos\\mauistemwijzer\\ViewModels\\ResultViewModel.cs",
               "RelativeDocumentMoniker": "ViewModels\\ResultViewModel.cs",
-              "ToolTip": "C:\\Users\\mauds\\source\\repos\\mauistemwijzer\\ViewModels\\ResultViewModel.cs*",
-              "RelativeToolTip": "ViewModels\\ResultViewModel.cs*",
+              "ToolTip": "C:\\Users\\mauds\\source\\repos\\mauistemwijzer\\ViewModels\\ResultViewModel.cs",
+              "RelativeToolTip": "ViewModels\\ResultViewModel.cs",
               "ViewState": "AgIAAAwAAAAAAAAAAAAYwEcAAABfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-10-27T10:32:53.738Z",
@@ -279,19 +292,6 @@
             {
               "$type": "Document",
               "DocumentIndex": 15,
-              "Title": "PoliticalGraph.xaml",
-              "DocumentMoniker": "C:\\Users\\mauds\\source\\repos\\mauistemwijzer\\Views\\PoliticalGraph.xaml",
-              "RelativeDocumentMoniker": "Views\\PoliticalGraph.xaml",
-              "ToolTip": "C:\\Users\\mauds\\source\\repos\\mauistemwijzer\\Views\\PoliticalGraph.xaml",
-              "RelativeToolTip": "Views\\PoliticalGraph.xaml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGwAAAAOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-10-14T07:56:05.631Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
               "Title": "PoliticalGraph.xaml.cs",
               "DocumentMoniker": "C:\\Users\\mauds\\source\\repos\\mauistemwijzer\\Views\\PoliticalGraph.xaml.cs",
               "RelativeDocumentMoniker": "Views\\PoliticalGraph.xaml.cs",
@@ -303,12 +303,12 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "QuestionViewModel.cs",
               "DocumentMoniker": "C:\\Users\\mauds\\source\\repos\\mauistemwijzer\\ViewModels\\QuestionViewModel.cs",
               "RelativeDocumentMoniker": "ViewModels\\QuestionViewModel.cs",
-              "ToolTip": "C:\\Users\\mauds\\source\\repos\\mauistemwijzer\\ViewModels\\QuestionViewModel.cs*",
-              "RelativeToolTip": "ViewModels\\QuestionViewModel.cs*",
+              "ToolTip": "C:\\Users\\mauds\\source\\repos\\mauistemwijzer\\ViewModels\\QuestionViewModel.cs",
+              "RelativeToolTip": "ViewModels\\QuestionViewModel.cs",
               "ViewState": "AgIAAFEAAAAAAAAAAAAiwGUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-10-14T07:18:08.824Z",

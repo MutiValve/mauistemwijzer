@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("mauistemwijzer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+a08a129e322b8d64b863e7c871a29e6a4c2ac159")]
 [assembly: System.Reflection.AssemblyProductAttribute("mauistemwijzer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("mauistemwijzer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
