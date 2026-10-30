@@ -61,7 +61,7 @@
                         Padding="12,10">
                         <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="10">
 
-                            <!-- Partijkleur label -->
+                            <!-- Partijkleur / Logo -->
                             <Border
                                 Grid.Column="0"
                                 WidthRequest="42"
@@ -70,23 +70,35 @@
                                 StrokeShape="RoundRectangle 10"
                                 Stroke="Transparent"
                                 VerticalOptions="Center">
-                                <Label
-                                    Text="{Binding Party.Abbreviation}"
-                                    TextColor="White"
-                                    FontSize="9"
-                                    FontAttributes="Bold"
-                                    HorizontalOptions="Center"
-                                    VerticalOptions="Center"
-                                    HorizontalTextAlignment="Center" />
+                                <Grid>
+                                    <!-- Logo afbeelding (zichtbaar als er een logo URL/pad is) -->
+                                    <Image
+                                        Source="{Binding Party.Logo}"
+                                        Aspect="AspectFit"
+                                        IsVisible="{Binding Party.HasLogo}"
+                                        Margin="2" />
+
+                                    <!-- Afkorting badge (zichtbaar als er geen logo is) -->
+                                    <Label
+                                        Text="{Binding Party.Abbreviation}"
+                                        TextColor="White"
+                                        FontSize="10"
+                                        FontAttributes="Bold"
+                                        HorizontalOptions="Center"
+                                        VerticalOptions="Center"
+                                        HorizontalTextAlignment="Center"
+                                        IsVisible="{Binding Party.HasNoLogo}" />
+                                </Grid>
                             </Border>
 
                             <!-- Naam -->
                             <Label
                                 Grid.Column="1"
-                                Text="{Binding Party.Abbreviation}"
+                                Text="{Binding Party.DisplayName}"
                                 TextColor="White"
                                 FontSize="13"
                                 FontAttributes="Bold"
+                                LineBreakMode="TailTruncation"
                                 VerticalOptions="Center" />
 
                             <!-- Checkbox -->

@@ -13,10 +13,9 @@ public partial class PoliticalGraph : ContentPage
         BindingContext = _vm;
     }
 
-    protected override void OnAppearing()
+    protected override async void OnAppearing()
     {
         base.OnAppearing();
-        // Re-build series every time the page appears so fresh answer data is used
-        _vm.BuildSeries();
+        await _vm.LoadAndBuildSeriesAsync();
     }
 }

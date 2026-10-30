@@ -4,6 +4,7 @@ using mauistemwijzer.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json.Serialization;
@@ -19,7 +20,7 @@ public partial class HttpStemwijzerService : IStemwijzerService
 
     private List<Party>? _cachedParties;
     private List<int>? _cachedQuestions;
-    private List<Coordinate>? _cachedCoordinates;
+    private ResultaatResponse? _cachedResultaat;
 
     public HttpStemwijzerService(HttpClient httpClient)
     {
@@ -38,7 +39,7 @@ public partial class HttpStemwijzerService : IStemwijzerService
             if (_cachedParties != null)
                 return _cachedParties;
 
-            _cachedParties = await GetFromApiAsync<List<Party>>("http://localhost/programming/stemwijzer/backend/?action=partijen") ?? [];
+            _cachedParties = await GetFromApiAsync<List<Party>>("http://localhost/programming/stemwijzer/backend/index.php?action=partijen") ?? [];
         }
         finally
         {
@@ -51,15 +52,9 @@ public partial class HttpStemwijzerService : IStemwijzerService
     // all questions
     public async Task<List<int>> GetQuestionsAsync()
     {
-        //if (_cachedQuestions != null)
-        //    return _cachedQuestions;
-
         await _lock.WaitAsync();
         try
         {
-            //if (_cachedQuestions != null)
-            //    return _cachedQuestions;
-
             _cachedQuestions = await GetFromApiAsync<List<int>>("http://localhost/programming/stemwijzer/backend/index.php?action=vragen");
         }
         finally
@@ -67,26 +62,54 @@ public partial class HttpStemwijzerService : IStemwijzerService
             _lock.Release();
         }
 
-        return _cachedQuestions;
+        return _cachedQuestions ?? [];
     }
 
     public async Task<Question?> GetQuestionByIdAsync(int id)
     {
         var data = await GetFromApiAsync<QuestionApiResponse>("http://localhost/programming/stemwijzer/backend/?action=vragen&id=" + id);
-        //Console.log
-
-
         return data?.Vraag;
     }
 
-    //coordinaten
-    public async Task<List<Coordinate>> GetAllCoordinatesAsync()
+    // Resultaat API (partijposities en gebruikerpositie op de politieke roos)
+    public async Task<ResultaatResponse?> GetResultaatAsync(List<UserAnswer>? answers = null)
     {
-        if (_cachedCoordinates != null)
-            return _cachedCoordinates;
+        string endpoint = "http://localhost/programming/stemwijzer/backend/index.php?action=resultaat";
 
-        _cachedCoordinates = await GetFromApiAsync<List<Coordinate>>("rekenshit.php") ?? [];
-        return _cachedCoordinates;
+        try
+        {
+            if (answers != null && answers.Count > 0)
+            {
+                var payload = new
+                {
+                    answers = answers.Select(a => new
+                    {
+                        questionId = a.QuestionId,
+                        answer = a.Answer.ToString()
+                    }).ToList()
+                };
+
+                var response = await _httpClient.PostAsJsonAsync(endpoint, payload);
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = await response.Content.ReadFromJsonAsync<ResultaatResponse>();
+                    if (result != null)
+                    {
+                        _cachedResultaat = result;
+                        return result;
+                    }
+                }
+            }
+
+            var getResult = await GetFromApiAsync<ResultaatResponse>(endpoint);
+            _cachedResultaat = getResult;
+            return getResult;
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"[HttpStemwijzerService] Error fetching resultaat: {ex.Message}");
+            return await GetFromApiAsync<ResultaatResponse>(endpoint);
+        }
     }
 
     // clear cache
@@ -97,7 +120,7 @@ public partial class HttpStemwijzerService : IStemwijzerService
         {
             _cachedParties = null;
             _cachedQuestions = null;
-            _cachedCoordinates = null;
+            _cachedResultaat = null;
         }
         finally
         {
@@ -105,15 +128,11 @@ public partial class HttpStemwijzerService : IStemwijzerService
         }
     }
 
-
     // api generic helperfunc
     private async Task<T?> GetFromApiAsync<T>(string endpoint) where T : class
     {
         try
         {
-            var killme = await _httpClient.GetAsync(endpoint);
-            string responseBody = await killme.Content.ReadAsStringAsync();
-
             var result = await _httpClient.GetFromJsonAsync<T>(endpoint);
             if (result == null)
             {
@@ -127,6 +146,4 @@ public partial class HttpStemwijzerService : IStemwijzerService
             throw new HttpRequestException($"Fout bij het ophalen van gegevens van de API ({endpoint}): {ex.Message}", ex);
         }
     }
-
-    // (Of gebruik je bestaande datastructuur uit je eerdere code voor de database-velden)
 }

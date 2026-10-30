@@ -18,6 +18,7 @@ public class PartyResultItem
 public partial class ResultViewModel : ObservableObject
 {
     private readonly StemwijzerState _state;
+    private readonly IStemwijzerService _httpService;
 
     public ObservableCollection<PartyResultItem> PartyResults { get; } = [];
 
@@ -30,20 +31,33 @@ public partial class ResultViewModel : ObservableObject
     [ObservableProperty]
     private bool hasResults;
 
-    public ResultViewModel(StemwijzerState state)
+    public ResultViewModel(StemwijzerState state, IStemwijzerService httpService)
     {
         _state = state;
+        _httpService = httpService;
+    }
+
+    public async Task LoadResultsAsync()
+    {
+        var response = await _httpService.GetResultaatAsync();
+        Calculate(response);
     }
 
     /// Berekent de score per partij. Roep aan vanuit ResultPage.OnAppearing.
     /// Scoring: Eens+Eens of Oneens+Oneens = match (+1). Neutraal of Overgeslagen telt niet mee.
 
-    public void Calculate()
+    public void Calculate(ResultaatResponse apiResponse)
     {
         PartyResults.Clear();
 
-        var selectedParties = _state.Parties
-            .Where(p => _state.SelectedPartyIds.Contains(p.Id))
+        if (apiResponse?.Partijen == null || apiResponse.Partijen.Count == 0)
+        {
+            HasResults = false;
+            return;
+        }
+
+        var selectedPartyDtos = apiResponse.Partijen
+            .Where(p => _state.SelectedPartyIds != null && _state.SelectedPartyIds.Contains(p.Id.ToString()))
             .ToList();
 
         var answeredQuestions = _state.Answers
@@ -52,30 +66,37 @@ public partial class ResultViewModel : ObservableObject
 
         var results = new List<PartyResultItem>();
 
-        foreach (var party in selectedParties)
+        foreach (var partyDto in selectedPartyDtos)
         {
             int matches = 0;
             int comparisons = 0;
 
-            foreach (var answer in answeredQuestions)
+            foreach (var userAnswer in answeredQuestions)
             {
-                ////var question = _state.Questions.FirstOrDefault(q => q.Id == answer.QuestionId);
-                //if (question is null) continue;
-                //if (!question.PartyPositions.TryGetValue(party.Id, out var partyPos)) continue;
-                //if (partyPos == PartyPosition.Neutraal) continue;
+                var partyAnswer = partyDto.Answers.FirstOrDefault(a => a.QuestionId == userAnswer.QuestionId);
+                if (partyAnswer == null) continue;
 
                 comparisons++;
 
-                //bool isMatch =
-                //    (answer.Answer == AnswerType.Eens   && partyPos == PartyPosition.Eens)   ||
-                //    (answer.Answer == AnswerType.Oneens && partyPos == PartyPosition.Oneens)  ||
-                //    (answer.Answer == AnswerType.GeenVanBeide); // neutraal telt als half-match
+                bool isMatch = userAnswer.Answer switch
+                {
+                    AnswerType.Eens => partyAnswer.Antwoord.Equals("Eens", StringComparison.OrdinalIgnoreCase),
+                    AnswerType.Oneens => partyAnswer.Antwoord.Equals("Oneens", StringComparison.OrdinalIgnoreCase),
+                    AnswerType.GeenVanBeide => partyAnswer.Antwoord.Equals("Midden", StringComparison.OrdinalIgnoreCase)
+                                               || partyAnswer.Antwoord.Equals("Neutraal", StringComparison.OrdinalIgnoreCase),
+                    _ => false
+                };
 
-                //if (isMatch) matches++;
+                if (isMatch) matches++;
             }
 
-            double score = comparisons > 0 ? Math.Round(matches * 100.0 / comparisons) : 0;
-            results.Add(new PartyResultItem { Party = party, Score = score });
+            double score = comparisons > 0 ? Math.Round((matches * 100.0) / comparisons) : 0;
+
+            results.Add(new PartyResultItem
+            {
+                Party = partyDto.ToParty(),
+                Score = score
+            });
         }
 
         results.Sort((a, b) => b.Score.CompareTo(a.Score));
@@ -83,7 +104,7 @@ public partial class ResultViewModel : ObservableObject
         if (results.Count > 0)
         {
             results[0].IsTopMatch = true;
-            TopPartyName = results[0].Party.Abbreviation;
+            TopPartyName = results[0].Party.DisplayName;
             TopPartyScore = results[0].ScoreText;
         }
 

@@ -17,6 +17,7 @@ public partial class SelectableParty : ObservableObject
 public partial class PartySelectViewModel : ObservableObject
 {
     private readonly StemwijzerState _state;
+    private readonly IStemwijzerService httpService; 
     private bool _updatingAll;
 
     public ObservableCollection<SelectableParty> Parties { get; } = [];
@@ -24,14 +25,22 @@ public partial class PartySelectViewModel : ObservableObject
     [ObservableProperty]
     private bool allPartiesSelected = true;
 
-    public PartySelectViewModel(StemwijzerState state)
+    // Pas de constructor aan zodat Dependency Injection de service meestuurt
+    public PartySelectViewModel(StemwijzerState state, IStemwijzerService httpService)
     {
         _state = state;
+        this.httpService = httpService;
     }
 
-
-    public void Initialize()
+    // Maak deze async zodat we de API kunnen aanroepen
+    public async Task InitializeAsync()
     {
+      
+        if (_state.Parties == null || _state.Parties.Count == 0)
+        {
+            _state.Parties = await httpService.GetPartiesAsync();
+        }
+
         Parties.Clear();
         foreach (var party in _state.Parties)
         {
@@ -60,7 +69,7 @@ public partial class PartySelectViewModel : ObservableObject
     [RelayCommand]
     private async Task ContinueAsync()
     {
-        var selected = Parties.Where(p => p.IsSelected).Select(p => p.Party.Id).ToList();
+        var selected = Parties.Where(p => p.IsSelected).Select(p => p.Party.Id.ToString()).ToList();
 
         if (selected.Count == 0)
         {

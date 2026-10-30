@@ -14,6 +14,6 @@ public partial class PartySelectPage : ContentPage
     {
         base.OnAppearing();
         if (BindingContext is PartySelectViewModel vm)
-            vm.Initialize();
+            vm.InitializeAsync();
     }
 }

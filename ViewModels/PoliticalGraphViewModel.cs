@@ -7,27 +7,33 @@ using LiveChartsCore.SkiaSharpView.Painting;
 using mauistemwijzer.Models;
 using mauistemwijzer.Services;
 using SkiaSharp;
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace mauistemwijzer.ViewModels;
 
 public partial class PoliticalGraphViewModel : ObservableObject
 {
     private readonly StemwijzerState _state;
+    private readonly IStemwijzerService _httpService;
+
+    private (double x, double y) _apiUserPosition = (0, 0);
 
     // Chart series (one for User, one for each party)
-
     public ISeries[] Series { get; private set; } = [];
 
     // Axes (Graph) 
-
     public Axis[] XAxes { get; } =
     [
         new Axis
         {
             MinLimit = -1.1,
             MaxLimit =  1.1,
-            IsVisible = false,          // hide tick labels; we draw our own axis labels in XAML
+            IsVisible = false,
             SeparatorsPaint = new SolidColorPaint(new SKColor(255, 255, 255, 30)),
             CrosshairPaint = null,
             ZeroPaint = new SolidColorPaint(new SKColor(255, 255, 255, 120)) { StrokeThickness = 1.5f },
@@ -45,8 +51,6 @@ public partial class PoliticalGraphViewModel : ObservableObject
             CrosshairPaint = null,
             ZeroPaint = new SolidColorPaint(new SKColor(255, 255, 255, 120)) { StrokeThickness = 1.5f },
         }
-
-
     ];
 
     public ObservableCollection<RectangularSection> Sections { get; set; } = new()
@@ -56,7 +60,7 @@ public partial class PoliticalGraphViewModel : ObservableObject
         {
             Xi = 0,
             Xj = 0,
-            Stroke = new SolidColorPaint(SKColor.Parse("#444444"), 2) // Adjust color and thickness as desired
+            Stroke = new SolidColorPaint(SKColor.Parse("#444444"), 2)
         },
         
         // Horizontal axis line at Y = 0 (Progressief / Conservatief divider)
@@ -69,24 +73,71 @@ public partial class PoliticalGraphViewModel : ObservableObject
     };
 
     // User position (for display label)
-
     [ObservableProperty]
     private string userPositionText = string.Empty;
 
-    public PoliticalGraphViewModel(StemwijzerState state)
+    public PoliticalGraphViewModel(StemwijzerState state, IStemwijzerService httpService)
     {
         _state = state;
+        _httpService = httpService;
     }
 
-    /// Builds all chart series. Call from PoliticalGraph.OnAppearing.
+    /// <summary>
+    /// Fetches coordinates from action=resultaat and builds the graph series.
+    /// </summary>
+    public async Task LoadAndBuildSeriesAsync()
+    {
+        try
+        {
+            // 1. Ensure parties exist
+            if (_state.Parties == null || _state.Parties.Count == 0)
+            {
+                _state.Parties = await _httpService.GetPartiesAsync();
+            }
 
+            // 2. Fetch coordinates from backend resultaat API
+            var result = await _httpService.GetResultaatAsync(_state.Answers);
+            if (result != null)
+            {
+                // Assign coordinates to each party
+                foreach (var partyResult in result.Partijen)
+                {
+                    var existing = _state.Parties.FirstOrDefault(p => p.Id == partyResult.Id);
+                    if (existing != null)
+                    {
+                        existing.Position = partyResult.Position;
+                        if (string.IsNullOrWhiteSpace(existing.ImagePath) && !string.IsNullOrWhiteSpace(partyResult.ImagePath))
+                        {
+                            existing.ImagePath = partyResult.ImagePath;
+                        }
+                    }
+                }
+
+                // Assign user position
+                if (result.UserPosition != null)
+                {
+                    _apiUserPosition = (result.UserPosition.X, result.UserPosition.Y);
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"[PoliticalGraphViewModel] Error loading resultaat: {ex.Message}");
+        }
+
+        BuildSeries();
+    }
+
+    /// <summary>
+    /// Builds all chart series.
+    /// </summary>
     public void BuildSeries()
     {
         var seriesList = new List<ISeries>();
 
         // Party dots
         var selectedParties = _state.Parties
-            .Where(p => _state.SelectedPartyIds.Contains(p.Id))
+            .Where(p => _state.SelectedPartyIds != null && _state.SelectedPartyIds.Contains(p.Id.ToString()))
             .ToList();
 
         // If nothing selected, show all parties
@@ -99,20 +150,20 @@ public partial class PoliticalGraphViewModel : ObservableObject
 
             seriesList.Add(new ScatterSeries<ObservablePoint>
             {
-                Name = party.Abbreviation,
+                Name = party.DisplayName,
                 Values = [new ObservablePoint(party.PoliticalX, party.PoliticalY)],
                 GeometrySize = 22,
                 Fill = new SolidColorPaint(color),
                 Stroke = new SolidColorPaint(SKColors.White) { StrokeThickness = 1.5f },
                 DataLabelsPaint = new SolidColorPaint(SKColors.White),
-                DataLabelsSize = 9,
+                DataLabelsSize = 10,
                 DataLabelsPosition = LiveChartsCore.Measure.DataLabelsPosition.Bottom,
                 DataLabelsFormatter = _ => party.Abbreviation,
             });
         }
 
         // User dot
-        var (userX, userY) = ComputeUserPosition();
+        var (userX, userY) = _apiUserPosition;
         UserPositionText = $"Jij: ({userX:F2}, {userY:F2})";
 
         seriesList.Add(new ScatterSeries<ObservablePoint>
@@ -133,45 +184,7 @@ public partial class PoliticalGraphViewModel : ObservableObject
         OnPropertyChanged(nameof(Series));
     }
 
-    // Scoring 
-
-    /// Computes the user's (X, Y) position on the compass from their answers.
-    /// Each non-skipped answer contributes the question's weight in the direction
-    /// of the answer: Eens = +weight, Oneens = -weight, GeenVanBeide = 0.
-    /// The accumulated scores are normalised to [-1, 1].
-    private (double x, double y) ComputeUserPosition()
-    {
-        //double rawX = 0, rawY = 0;
-        //double totalEcon = 0, totalSocial = 0;
-
-        //foreach (var answer in _state.Answers)
-        //{
-        //    if (answer.Answer == AnswerType.Overgeslagen) continue;
-
-        //    var question = _state.Questions.FirstOrDefault(q => q.Id == answer.QuestionId);
-        //    if (question is null) continue;
-
-        //    double multiplier = answer.Answer switch
-        //    {
-        //        AnswerType.Eens        =>  1.0,
-        //        AnswerType.Oneens      => -1.0,
-        //        AnswerType.GeenVanBeide => 0.0,
-        //        _                      =>  0.0,
-        //    };
-
-        //    rawX    += multiplier * question.EconomicWeight;
-        //    rawY    += multiplier * question.SocialWeight;
-        //    totalEcon   += Math.Abs(question.EconomicWeight);
-        //    totalSocial += Math.Abs(question.SocialWeight);
-        //}
-
-        //double x = totalEcon   > 0 ? Math.Clamp(rawX   / totalEcon,   -1, 1) : 0;
-        //double y = totalSocial > 0 ? Math.Clamp(rawY   / totalSocial, -1, 1) : 0;
-        return (0,0);
-    }
-
     // Navigation
-
     [RelayCommand]
     private async Task GoForwardAsync()
     {
@@ -180,7 +193,6 @@ public partial class PoliticalGraphViewModel : ObservableObject
     }
 
     // Helpers
-
     private static SKColor ParseHexColor(string hex)
     {
         try

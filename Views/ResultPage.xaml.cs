@@ -1,3 +1,5 @@
+using mauistemwijzer.Models;
+using mauistemwijzer.Services;
 using mauistemwijzer.ViewModels;
 
 namespace mauistemwijzer.Views;
@@ -10,16 +12,14 @@ public partial class ResultPage : ContentPage
         BindingContext = viewModel;
     }
 
-    protected override void OnAppearing()
+    protected override async void OnAppearing()
     {
         base.OnAppearing();
-        if (BindingContext is ResultViewModel vm)
-            vm.Calculate();
-    }
 
-    /// <summary>
-    /// Blokkeer de hardware-terugknop op de uitslag-pagina.
-    /// Gebruik de "Opnieuw beginnen" knop om te resetten.
-    /// </summary>
+        if (BindingContext is ResultViewModel vm)
+        {
+            await vm.LoadResultsAsync();
+        }
+    }
     protected override bool OnBackButtonPressed() => true;
 }
