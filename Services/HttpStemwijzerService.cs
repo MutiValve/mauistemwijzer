@@ -11,6 +11,8 @@ using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
 
+using System.Text.Json;
+
 namespace mauistemwijzer.Services;
 
 public partial class HttpStemwijzerService : IStemwijzerService
@@ -68,6 +70,7 @@ public partial class HttpStemwijzerService : IStemwijzerService
     public async Task<Question?> GetQuestionByIdAsync(int id)
     {
         var data = await GetFromApiAsync<QuestionApiResponse>("http://localhost/programming/stemwijzer/backend/?action=vragen&id=" + id);
+        Debug.WriteLine("data is " + data);
         return data?.Vraag;
     }
 
@@ -88,6 +91,8 @@ public partial class HttpStemwijzerService : IStemwijzerService
                         answer = a.Answer.ToString()
                     }).ToList()
                 };
+
+                Debug.WriteLine(JsonSerializer.Serialize(payload));
 
                 var response = await _httpClient.PostAsJsonAsync(endpoint, payload);
                 if (response.IsSuccessStatusCode)

@@ -6,7 +6,7 @@ public enum PartyPosition
 {
     Eens,
     Oneens,
-    Neutraal
+    Midden
 }
 
 public class Question
@@ -20,10 +20,10 @@ public class Question
     [JsonPropertyName("Beschrijving")]
     public string Statement { get; set; } = string.Empty;
 
-    [JsonPropertyName("Conservatief/Midden/Progressief")]
+    [JsonPropertyName("Spectrum")]
     public string Spectrum { get; set; } = string.Empty;
 
-    [JsonPropertyName("Links/Rechts")]
+    [JsonPropertyName("LinksRechts")]
     public string LinksRechts { get; set; } = string.Empty;
 
     [JsonPropertyName("weight")]

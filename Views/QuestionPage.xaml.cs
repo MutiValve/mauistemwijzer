@@ -10,10 +10,6 @@ public partial class QuestionPage : ContentPage
         BindingContext = viewModel;
     }
 
-    /// <summary>
-    /// Onderschep de Android hardware-terugknop zodat die hetzelfde doet
-    /// als de "Ga terug" knop in de UI (vorige vraag, niet shell-pop).
-    /// </summary>
     protected override bool OnBackButtonPressed()
     {
         if (BindingContext is QuestionViewModel vm)
@@ -23,5 +19,12 @@ public partial class QuestionPage : ContentPage
             return true; // event afgehandeld
         }
         return base.OnBackButtonPressed();
+    }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        if (BindingContext is QuestionViewModel vm)
+            vm.InitializeAsync();
     }
 }

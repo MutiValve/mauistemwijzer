@@ -39,12 +39,10 @@ public partial class ResultViewModel : ObservableObject
 
     public async Task LoadResultsAsync()
     {
-        var response = await _httpService.GetResultaatAsync();
+        var response = await _httpService.GetResultaatAsync(_state.Answers);
         Calculate(response);
     }
 
-    /// Berekent de score per partij. Roep aan vanuit ResultPage.OnAppearing.
-    /// Scoring: Eens+Eens of Oneens+Oneens = match (+1). Neutraal of Overgeslagen telt niet mee.
 
     public void Calculate(ResultaatResponse apiResponse)
     {

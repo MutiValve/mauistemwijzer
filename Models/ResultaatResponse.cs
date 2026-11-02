@@ -62,7 +62,7 @@ public class ResultPartyDto
     [JsonPropertyName("totalQuestions")]
     public int TotalQuestions { get; set; }
 
-    // Helper method to turn API DTO into your domain Party model
+    // API DATA -> Party model
     public Party ToParty()
     {
         return new Party

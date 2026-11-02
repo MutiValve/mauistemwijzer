@@ -31,7 +31,6 @@ public partial class QuestionViewModel : ObservableObject
         _state = state;
         _httpService = httpService;
         TotalQuestions = _state.Questions.Count;
-        LoadCurrentQuestion();
     }
 
     private async Task LoadCurrentQuestion()
@@ -102,5 +101,10 @@ public partial class QuestionViewModel : ObservableObject
         {
             await Shell.Current.GoToAsync("..");
         }
+    }
+
+    public async Task InitializeAsync()
+    {
+        await LoadCurrentQuestion(); 
     }
 }
