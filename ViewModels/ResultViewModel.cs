@@ -1,8 +1,9 @@
-using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using mauistemwijzer.Models;
 using mauistemwijzer.Services;
+using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace mauistemwijzer.ViewModels;
 
@@ -13,6 +14,7 @@ public class PartyResultItem
     public bool IsTopMatch { get; set; }
     public string ScoreText => $"{Score:F0}%";
     public double ProgressValue => Score / 100.0;
+    public ICommand SelectCommand { get; set; } = null!;
 }
 
 public partial class ResultViewModel : ObservableObject
@@ -30,6 +32,12 @@ public partial class ResultViewModel : ObservableObject
 
     [ObservableProperty]
     private bool hasResults;
+
+    [ObservableProperty]
+    private bool isPopupVisible;
+
+    [ObservableProperty]
+    private PartyResultItem? selectedPartyItem;
 
     public ResultViewModel(StemwijzerState state, IStemwijzerService httpService)
     {
@@ -93,7 +101,8 @@ public partial class ResultViewModel : ObservableObject
             results.Add(new PartyResultItem
             {
                 Party = partyDto.ToParty(),
-                Score = score
+                Score = score,
+                SelectCommand = OpenPartyPopupCommand
             });
         }
 
@@ -122,5 +131,20 @@ public partial class ResultViewModel : ObservableObject
     {
         _state.Reset();
         await Shell.Current.GoToAsync("//start");
+    }
+
+    [RelayCommand]
+    private void OpenPartyPopup(PartyResultItem? item)
+    {
+        if (item == null) return;
+        SelectedPartyItem = item;
+        IsPopupVisible = true;
+    }
+
+    [RelayCommand]
+    private void ClosePopup()
+    {
+        IsPopupVisible = false;
+        SelectedPartyItem = null;
     }
 }

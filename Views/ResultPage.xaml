@@ -13,136 +13,235 @@
         <converters:StringToColorConverter x:Key="StringToColor" />
     </ContentPage.Resources>
 
-    <!-- Uitschakel hardware-terugknop op de uitslag-pagina -->
+    <!-- Hardware back button behavior -->
     <Shell.BackButtonBehavior>
         <BackButtonBehavior IsEnabled="False" IsVisible="False" />
     </Shell.BackButtonBehavior>
 
-    <Grid RowDefinitions="Auto,Auto,*,Auto">
+    <Grid>
 
-        <!-- Header -->
-        <VerticalStackLayout Grid.Row="0" Padding="24,48,24,16">
-            <Label
-                Text="Jouw uitslag"
-                TextColor="#F5A623"
-                FontSize="30"
-                FontAttributes="Bold" />
-        </VerticalStackLayout>
+        <!-- Main Content -->
+        <Grid RowDefinitions="Auto,Auto,*,Auto">
 
-        <!-- Beste match -->
-        <Border
-            Grid.Row="1"
-            BackgroundColor="#141400"
-            StrokeShape="RoundRectangle 16"
-            Stroke="#F5A623"
-            StrokeThickness="1"
-            Margin="24,0"
-            Padding="20,16">
-            <Grid ColumnDefinitions="*,Auto">
-                <VerticalStackLayout Grid.Column="0" Spacing="4">
-                    <Label Text="Beste match" TextColor="#F5A623" FontSize="13" FontAttributes="Bold" />
-                    <Label Text="{Binding TopPartyName}" TextColor="White" FontSize="24" FontAttributes="Bold" />
-                    <Label Text="{Binding TopPartyScore, StringFormat='{0} overeenkomst'}"
-                           TextColor="#AAAAAA" FontSize="14" />
-                </VerticalStackLayout>
-            </Grid>
-        </Border>
+            <!-- Header -->
+            <VerticalStackLayout Grid.Row="0" Padding="24,48,24,16">
+                <Label
+                    Text="Jouw uitslag"
+                    TextColor="#F5A623"
+                    FontSize="30"
+                    FontAttributes="Bold" />
+            </VerticalStackLayout>
 
-        <!-- Partij scores lijst -->
-        <ScrollView Grid.Row="2">
-            <CollectionView
-                ItemsSource="{Binding PartyResults}"
-                Margin="24,20">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="vm:PartyResultItem">
-                        <VerticalStackLayout Margin="0,0,0,20" Spacing="8">
+            <!-- Beste match -->
+            <Border
+                Grid.Row="1"
+                BackgroundColor="#141400"
+                StrokeShape="RoundRectangle 16"
+                Stroke="#F5A623"
+                StrokeThickness="1"
+                Margin="24,0"
+                Padding="20,16">
+                <Grid ColumnDefinitions="*,Auto">
+                    <VerticalStackLayout Grid.Column="0" Spacing="4">
+                        <Label Text="Beste match" TextColor="#F5A623" FontSize="13" FontAttributes="Bold" />
+                        <Label Text="{Binding TopPartyName}" TextColor="White" FontSize="24" FontAttributes="Bold" />
+                        <Label Text="{Binding TopPartyScore, StringFormat='{0} overeenkomst'}"
+                               TextColor="#AAAAAA" FontSize="14" />
+                    </VerticalStackLayout>
+                </Grid>
+            </Border>
 
-                            <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
-                                <!-- Partijkleur / Logo -->
-                                <Border
-                                    Grid.Column="0"
-                                    WidthRequest="38"
-                                    HeightRequest="38"
-                                    BackgroundColor="{Binding Party.Color, Converter={StaticResource StringToColor}}"
-                                    StrokeShape="RoundRectangle 10"
-                                    Stroke="Transparent">
-                                    <Grid>
-                                        <Image
-                                            Source="{Binding Party.Logo}"
-                                            Aspect="AspectFit"
-                                            IsVisible="{Binding Party.HasLogo}"
-                                            Margin="2" />
-                                        <Label
-                                            Text="{Binding Party.Abbreviation}"
-                                            TextColor="White"
-                                            FontSize="9"
-                                            FontAttributes="Bold"
-                                            HorizontalOptions="Center"
-                                            VerticalOptions="Center"
-                                            HorizontalTextAlignment="Center"
-                                            IsVisible="{Binding Party.HasNoLogo}" />
-                                    </Grid>
-                                </Border>
+            <!-- Partij scores lijst -->
+            <ScrollView Grid.Row="2">
+                <CollectionView
+                    ItemsSource="{Binding PartyResults}"
+                    Margin="24,20">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="vm:PartyResultItem">
+                            <VerticalStackLayout Margin="0,0,0,20" Spacing="8">
 
-                                <!-- Partijnaam -->
+                                <!-- Tap Handler for Opening Overlay -->
+                                <VerticalStackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer 
+                                        Command="{Binding SelectCommand}" 
+                                        CommandParameter="{Binding}" />
+                                </VerticalStackLayout.GestureRecognizers>
+
+                                <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+                                    <!-- Partijkleur / Logo -->
+                                    <Border
+                                        Grid.Column="0"
+                                        WidthRequest="38"
+                                        HeightRequest="38"
+                                        BackgroundColor="{Binding Party.Color, Converter={StaticResource StringToColor}}"
+                                        StrokeShape="RoundRectangle 10"
+                                        Stroke="Transparent">
+                                        <Grid>
+                                            <Image
+                                                Source="{Binding Party.Logo}"
+                                                Aspect="AspectFit"
+                                                IsVisible="{Binding Party.HasLogo}"
+                                                Margin="2" />
+                                            <Label
+                                                Text="{Binding Party.Abbreviation}"
+                                                TextColor="White"
+                                                FontSize="9"
+                                                FontAttributes="Bold"
+                                                HorizontalOptions="Center"
+                                                VerticalOptions="Center"
+                                                HorizontalTextAlignment="Center"
+                                                IsVisible="{Binding Party.HasNoLogo}" />
+                                        </Grid>
+                                    </Border>
+
+                                    <!-- Partijnaam -->
+                                    <Label
+                                        Grid.Column="1"
+                                        Text="{Binding Party.DisplayName}"
+                                        TextColor="White"
+                                        FontSize="15"
+                                        FontAttributes="Bold"
+                                        VerticalOptions="Center" />
+
+                                    <!-- Score percentage -->
+                                    <Label
+                                        Grid.Column="2"
+                                        Text="{Binding ScoreText}"
+                                        TextColor="#F5A623"
+                                        FontSize="15"
+                                        FontAttributes="Bold"
+                                        VerticalOptions="Center" />
+                                </Grid>
+
+                                <!-- Score balk -->
+                                <ProgressBar
+                                    Progress="{Binding ProgressValue}"
+                                    ProgressColor="{Binding Party.Color, Converter={StaticResource StringToColor}}"
+                                    BackgroundColor="#1E1E1E"
+                                    HeightRequest="8" />
+
+                            </VerticalStackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </ScrollView>
+
+            <!-- Knoppen onderaan -->
+            <VerticalStackLayout Grid.Row="3" Spacing="12" Margin="24,12,24,32">
+                <Button
+                    Text="Bekijk Politieke Roos"
+                    Command="{Binding ShowPoliticalGraphCommand}"
+                    BackgroundColor="#F5A623"
+                    TextColor="#0A0A0A"
+                    FontAttributes="Bold"
+                    FontSize="16"
+                    CornerRadius="30"
+                    HeightRequest="52" />
+
+                <Button
+                    Text="Opnieuw beginnen"
+                    Command="{Binding RestartCommand}"
+                    BackgroundColor="Transparent"
+                    TextColor="#888888"
+                    FontSize="14"
+                    BorderColor="#333333"
+                    BorderWidth="1"
+                    CornerRadius="30"
+                    HeightRequest="44" />
+            </VerticalStackLayout>
+
+        </Grid>
+
+        <!-- OVERLAY POPUP CARD -->
+        <Grid 
+            IsVisible="{Binding IsPopupVisible}"
+            BackgroundColor="#B0000000"
+            ZIndex="100">
+
+            <!-- Tap backdrop to dismiss -->
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding ClosePopupCommand}" />
+            </Grid.GestureRecognizers>
+
+            <Border
+                BackgroundColor="#C8C8C8"
+                StrokeShape="RoundRectangle 24"
+                Stroke="Transparent"
+                WidthRequest="320"
+                MaximumHeightRequest="480"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Padding="24">
+
+                <!-- Prevent backdrop click dismissal when clicking card body -->
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer />
+                </Border.GestureRecognizers>
+
+                <VerticalStackLayout Spacing="16">
+
+                    <!-- Logo / Abbreviation & Title -->
+                    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="16" VerticalOptions="Center">
+                        <Border
+                            Grid.Column="0"
+                            WidthRequest="64"
+                            HeightRequest="64"
+                            BackgroundColor="{Binding SelectedPartyItem.Party.Color, Converter={StaticResource StringToColor}}"
+                            StrokeShape="RoundRectangle 12"
+                            Stroke="Transparent">
+                            <Grid>
+                                <Image
+                                    Source="{Binding SelectedPartyItem.Party.Logo}"
+                                    Aspect="AspectFit"
+                                    IsVisible="{Binding SelectedPartyItem.Party.HasLogo}"
+                                    Margin="4" />
                                 <Label
-                                    Grid.Column="1"
-                                    Text="{Binding Party.DisplayName}"
+                                    Text="{Binding SelectedPartyItem.Party.Abbreviation}"
                                     TextColor="White"
-                                    FontSize="15"
+                                    FontSize="14"
                                     FontAttributes="Bold"
-                                    VerticalOptions="Center" />
-
-                                <!-- Score percentage -->
-                                <Label
-                                    Grid.Column="2"
-                                    Text="{Binding ScoreText}"
-                                    TextColor="#F5A623"
-                                    FontSize="15"
-                                    FontAttributes="Bold"
-                                    VerticalOptions="Center" />
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center"
+                                    HorizontalTextAlignment="Center"
+                                    IsVisible="{Binding SelectedPartyItem.Party.HasNoLogo}" />
                             </Grid>
+                        </Border>
 
-                            <!-- Score balk -->
-                            <ProgressBar
-                                Progress="{Binding ProgressValue}"
-                                ProgressColor="{Binding Party.Color, Converter={StaticResource StringToColor}}"
-                                BackgroundColor="#1E1E1E"
-                                HeightRequest="8" />
+                        <Label
+                            Grid.Column="1"
+                            Text="{Binding SelectedPartyItem.Party.DisplayName}"
+                            TextColor="#1A1A1A"
+                            FontSize="18"
+                            FontAttributes="Bold"
+                            VerticalOptions="Center"
+                            LineBreakMode="WordWrap" />
+                    </Grid>
 
-                        </VerticalStackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </ScrollView>
+                    <!-- Scrollable Description -->
+                    <ScrollView HeightRequest="200" Margin="0,8,0,0">
+                        <Label
+                            Text="{Binding SelectedPartyItem.Party.Description, FallbackValue='Beschrijving partij'}"
+                            TextColor="#333333"
+                            FontSize="14"
+                            LineHeight="1.2"
+                            LineBreakMode="WordWrap" />
+                    </ScrollView>
 
-        <!-- Knoppen onderaan -->
-        <VerticalStackLayout Grid.Row="3" Spacing="12" Margin="24,12,24,32">
+                    <!-- Close Button -->
+                    <Button
+                        Text="Sluiten"
+                        Command="{Binding ClosePopupCommand}"
+                        BackgroundColor="#F5A623"
+                        TextColor="#0A0A0A"
+                        FontAttributes="Bold"
+                        CornerRadius="20"
+                        HeightRequest="42"
+                        Margin="0,8,0,0" />
 
-            <!-- Primair: naar de politieke roos -->
-            <Button
-                Text="Bekijk Politieke Roos"
-                Command="{Binding ShowPoliticalGraphCommand}"
-                BackgroundColor="#F5A623"
-                TextColor="#0A0A0A"
-                FontAttributes="Bold"
-                FontSize="16"
-                CornerRadius="30"
-                HeightRequest="52" />
-
-            <!-- Secundair: opnieuw beginnen -->
-            <Button
-                Text="Opnieuw beginnen"
-                Command="{Binding RestartCommand}"
-                BackgroundColor="Transparent"
-                TextColor="#888888"
-                FontSize="14"
-                BorderColor="#333333"
-                BorderWidth="1"
-                CornerRadius="30"
-                HeightRequest="44" />
-
-        </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
 
     </Grid>
+
 </ContentPage>
